@@ -1,5 +1,5 @@
-metagoofil (2.2-1) unstable; urgency=low
+metagoofil (2.2-1kali0) kali; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release 
 
  -- Devon Kearns <dookie@kali.org>  Sun, 10 Feb 2013 21:27:04 -0700

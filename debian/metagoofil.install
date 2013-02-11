@@ -1,0 +1,9 @@
+*.py usr/share/metagoofil/
+discovery usr/share/metagoofil/
+extractors usr/share/metagoofil/
+hachoir_core usr/share/metagoofil/
+hachoir_metadata usr/share/metagoofil/
+hachoir_parser usr/share/metagoofil/
+lib usr/share/metagoofil/
+pdfminer usr/share/metagoofil/
+debian/helper-script/* usr/bin/

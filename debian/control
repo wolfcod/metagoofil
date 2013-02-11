@@ -1,15 +1,24 @@
 Source: metagoofil
-Section: unknown
+Section: utils
 Priority: extra
 Maintainer: Devon Kearns <dookie@kali.org>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://git.debian.org/collab-maint/metagoofil.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/metagoofil.git;a=summary
+Homepage: http://www.edge-security.com/metagoofil.php
+Vcs-Git: ssh://git@git.kali.org/packages/metagoofil.git
+Vcs-Browser: http://git.kali.org/gitweb/?p=packages/metagoofil.git;a=summary
 
 Package: metagoofil
 Architecture: all
-Depends: ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${misc:Depends}, python, python-support
+Description: Tool designed for extracting metadata of public documents
+ Metagoofil is an information gathering tool designed for extracting metadata of 
+ public documents (pdf,doc,xls,ppt,docx,pptx,xlsx) belonging to a target 
+ company.
+ .
+ Metagoofil will perform a search in Google to identify and download the 
+ documents to local disk and then will extract the metadata with different 
+ libraries like Hachoir, PdfMiner? and others. With the results it will generate 
+ a report with usernames, software versions and servers or machine names that 
+ will help Penetration testers in the information gathering phase.
+
