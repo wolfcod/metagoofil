@@ -1,3 +1,9 @@
+metagoofil (2.2-1kali1) kali; urgency=low
+
+  * Amended the helper script (Closes: 0000765)
+
+ -- Devon Kearns <dookie@kali.org>  Wed, 11 Dec 2013 10:17:44 -0700
+
 metagoofil (2.2-1kali0) kali; urgency=low
 
   * Initial release 
