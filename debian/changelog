@@ -1,3 +1,10 @@
+metagoofil (2.2-1kali2) kali-dev; urgency=medium
+
+  * Drop dependency on python-support (obsolete package)
+  * Use debhelper 9
+
+ -- Sophie Brun <sophie@freexian.com>  Fri, 29 Jan 2016 09:07:09 +0100
+
 metagoofil (2.2-1kali1) kali; urgency=low
 
   * Amended the helper script (Closes: 0000765)
