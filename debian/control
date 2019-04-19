@@ -5,8 +5,8 @@ Maintainer: Kali Developers <devel@kali.org>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.3
 Homepage: http://www.edge-security.com/metagoofil.php
-Vcs-Git: git://git.kali.org/packages/metagoofil.git
-Vcs-Browser: http://git.kali.org/gitweb/?p=packages/metagoofil.git;a=summary
+Vcs-Git: https://gitlab.com/kalilinux/packages/metagoofil.git
+Vcs-Browser: https://gitlab.com/kalilinux/packages/metagoofil
 
 Package: metagoofil
 Architecture: all
