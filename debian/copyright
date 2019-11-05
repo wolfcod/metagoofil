@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: metagoofil
-Source: http://www.edge-security.com/metagoofil.php
+Source: https://github.com/opsdisk/metagoofil
 
 Files: *
 Copyright: Christian Martorella <cmartorella@edge-security.com>
