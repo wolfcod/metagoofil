@@ -1,3 +1,23 @@
+metagoofil (2.2.+git20190307-0kali1) kali-dev; urgency=medium
+
+  [ Raphaël Hertzog ]
+  * Update Maintainer field
+  * Update Vcs-* fields for the move to gitlab.com
+  * Add GitLab's CI configuration file
+  * Configure git-buildpackage for Kali
+  * Update URL in GitLab's CI configuration file
+
+  [ Sophie Brun ]
+  * Change for new upstream: maintained and Python 3 compat
+  * New upstream version 2.2.+git20190307
+  * Use debhelper-compat 12
+  * Bump Standards-Version to 4.4.1
+  * Remove obsolete patches
+  * Update installation for new package and Python 3
+  * Update debian/copyright
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 05 Nov 2019 15:46:14 +0100
+
 metagoofil (2.2-1kali2) kali-dev; urgency=medium
 
   * Drop dependency on python-support (obsolete package)
