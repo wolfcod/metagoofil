@@ -12,13 +12,12 @@ Package: metagoofil
 Architecture: all
 Depends: ${misc:Depends}, ${python3:Depends}, python3-googlesearch
 Description: Tool designed for extracting metadata of public documents
- Metagoofil is an information gathering tool designed for extracting metadata of 
- public documents (pdf,doc,xls,ppt,docx,pptx,xlsx) belonging to a target 
+ Metagoofil is an information gathering tool designed for extracting metadata of
+ public documents (pdf,doc,xls,ppt,docx,pptx,xlsx) belonging to a target
  company.
  .
- Metagoofil will perform a search in Google to identify and download the 
- documents to local disk and then will extract the metadata with different 
- libraries like Hachoir, PdfMiner? and others. With the results it will generate 
- a report with usernames, software versions and servers or machine names that 
+ Metagoofil will perform a search in Google to identify and download the
+ documents to local disk and then will extract the metadata with different
+ libraries like Hachoir, PdfMiner? and others. With the results it will generate
+ a report with usernames, software versions and servers or machine names that
  will help Penetration testers in the information gathering phase.
-
