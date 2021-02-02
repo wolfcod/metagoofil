@@ -1,3 +1,19 @@
+metagoofil (2.2.+git20201004-0kali1) kali-dev; urgency=medium
+
+  [ Kali Janitor ]
+  * Trim trailing whitespace.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+  * Update standards version to 4.5.0, no changes needed.
+
+  [ Sophie Brun ]
+  * New upstream version 2.2.+git20201004
+  * Update package description
+  * Add a patch to fix shebang
+  * Update Standards-Version
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 02 Feb 2021 09:45:35 +0100
+
 metagoofil (2.2.+git20190307-0kali1) kali-dev; urgency=medium
 
   [ Raphaël Hertzog ]
