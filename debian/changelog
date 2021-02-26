@@ -1,3 +1,9 @@
+metagoofil (2.2.+git20210226-0kali1) kali-dev; urgency=medium
+
+  * New upstream version 2.2.+git20210226 (see 7005)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 26 Feb 2021 09:25:10 +0100
+
 metagoofil (2.2.+git20201004-0kali1) kali-dev; urgency=medium
 
   [ Kali Janitor ]
