@@ -1,3 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-python3 /usr/share/metagoofil/metagoofil.py "$@"
+set -e
+
+exec python3 /usr/share/metagoofil/metagoofil.py "$@"
