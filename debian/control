@@ -5,7 +5,7 @@ Maintainer: Kali Developers <devel@kali.org>
 Uploaders: Devon Kearns <dookie@kali.org>,
            Sophie Brun <sophie@offensive-security.com>,
 Build-Depends: debhelper-compat (= 12), dh-python, python3-all
-Standards-Version: 4.5.1
+Standards-Version: 4.6.2
 Homepage: https://github.com/opsdisk/metagoofil
 Vcs-Git: https://gitlab.com/kalilinux/packages/metagoofil.git
 Vcs-Browser: https://gitlab.com/kalilinux/packages/metagoofil
