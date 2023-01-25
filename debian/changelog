@@ -1,3 +1,18 @@
+metagoofil (2.2.+git20210226-0kali2) kali-dev; urgency=medium
+
+  [ Ben Wilson ]
+  * Update email address
+  * New helper-script format
+  * Add Uploaders
+  * Remove template comment and switch spaces to tabs
+
+  [ Steev Klimaszewski ]
+  * Add d/watch pointing to upstream git
+  * Update standards version to 4.6.2, no changes needed.
+  * Prepare for Release
+
+ -- Steev Klimaszewski <steev@kali.org>  Wed, 25 Jan 2023 10:03:48 -0600
+
 metagoofil (2.2.+git20210226-0kali1) kali-dev; urgency=medium
 
   * New upstream version 2.2.+git20210226 (see 7005)
