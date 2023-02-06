@@ -7,7 +7,7 @@ Subject: UPdate shebang to indicate python3
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/metagoofil.py b/metagoofil.py
-index a1257f3..a56087c 100644
+index 3ddffaf..cb556d2 100644
 --- a/metagoofil.py
 +++ b/metagoofil.py
 @@ -1,4 +1,4 @@
