@@ -1,3 +1,3 @@
 *.py usr/share/metagoofil/
-user_agents.txt usr/share/metagoofil/
 debian/helper-script/* usr/bin
+user_agents.txt usr/share/metagoofil/

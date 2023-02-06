@@ -3,7 +3,7 @@ Section: utils
 Priority: optional
 Maintainer: Kali Developers <devel@kali.org>
 Uploaders: Devon Kearns <dookie@kali.org>,
-           Sophie Brun <sophie@offensive-security.com>,
+           Sophie Brun <sophie@offensive-security.com>
 Build-Depends: debhelper-compat (= 12), dh-python, python3-all
 Standards-Version: 4.6.2
 Homepage: https://github.com/opsdisk/metagoofil
@@ -12,7 +12,10 @@ Vcs-Browser: https://gitlab.com/kalilinux/packages/metagoofil
 
 Package: metagoofil
 Architecture: all
-Depends: ${misc:Depends}, ${python3:Depends}, python3-googlesearch
+Depends: python3-googlesearch,
+         python3-requests,
+         ${misc:Depends},
+         ${python3:Depends}
 Recommends: libimage-exiftool-perl
 Description: Tool designed for extracting metadata of public documents
  Metagoofil is an information gathering tool designed for extracting metadata of
