@@ -8,6 +8,7 @@ import random
 import sys
 import threading
 import time
+import urllib
 
 # Third party Python libraries.
 # google == 2.0.1, module author changed import name to googlesearch
@@ -19,6 +20,8 @@ import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+__version__ = "1.2.0"
 
 
 class DownloadWorker(threading.Thread):
@@ -45,7 +48,13 @@ class DownloadWorker(threading.Thread):
                 else:
                     headers["User-Agent"] = mg.user_agent
 
-                response = requests.get(url, headers=headers, verify=False, timeout=mg.url_timeout, stream=True)
+                response = requests.get(
+                    url,
+                    headers=headers,
+                    verify=False,
+                    timeout=mg.url_timeout,
+                    stream=True,
+                )
 
                 # Download the file.
                 if response.status_code == 200:
@@ -61,10 +70,15 @@ class DownloadWorker(threading.Thread):
 
                     mg.total_bytes += size
 
-                    print(f"[+] Downloading file - [{size} bytes] {url}")
+                    # Strip any trailing /'s before extracting file name.  Use response.url in case there were HTTP
+                    # 301/302 redirects.
+                    url_file_name = str(response.url.strip("/").split("/")[-1])
 
-                    # Strip any trailing /'s before extracting file name.
-                    filename = str(url.strip("/").split("/")[-1])
+                    # Decode URL file name if it's encoded.  No harm calling urllib.parse.unquote() if the URL file
+                    # name isn't URL encoded.
+                    filename = urllib.parse.unquote(url_file_name, encoding="utf-8")
+
+                    print(f'[+] Downloading "{filename}" [{size} bytes] from: {response.url}')
 
                     with open(os.path.join(mg.save_directory, filename), "wb") as fh:
                         for chunk in response.iter_content(chunk_size=1024):
@@ -99,9 +113,7 @@ class Metagoofil:
     ):
         self.domain = domain
         self.delay = delay
-        self.save_links = save_links
-        if self.save_links:
-            self.html_links = open(f"html_links_{get_timestamp()}.txt", "a")
+        self.save_links = open(save_links, "a") if save_links else None
         self.url_timeout = url_timeout
         self.search_max = search_max
         self.download_file_limit = download_file_limit
@@ -190,10 +202,10 @@ class Metagoofil:
             # Save links to output to file.
             if self.save_links:
                 for f in self.files:
-                    self.html_links.write(f"{f}\n")
+                    self.save_links.write(f"{f}\n")
 
         if self.save_links:
-            self.html_links.close()
+            self.save_links.close()
 
         if self.download_files:
             print(
@@ -231,47 +243,82 @@ class SmartFormatter(argparse.HelpFormatter):
         return argparse.HelpFormatter._split_lines(self, text, width)
 
 
+def positive_int(value):
+    try:
+        value_int = int(value)
+        assert value_int >= 0
+        return value_int
+    except (AssertionError, ValueError):
+        raise argparse.ArgumentTypeError(f"invalid value '{value}', must be an int >= 0")
+
+
+def positive_float(value):
+    try:
+        value_float = float(value)
+        assert value_float >= 0
+        return value_float
+    except (AssertionError, ValueError):
+        raise argparse.ArgumentTypeError(f"invalid value '{value}', must be a float >= 0")
+
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description="Metagoofil - Search and download specific filetypes", formatter_class=SmartFormatter
+        description=f"Metagoofil v{__version__} - Search Google and download specific file types.",
+        formatter_class=SmartFormatter,
     )
-    parser.add_argument("-d", dest="domain", action="store", required=True, help="Domain to search.")
+    parser.add_argument(
+        "-d",
+        dest="domain",
+        action="store",
+        required=True,
+        help="Domain to search.",
+    )
     parser.add_argument(
         "-e",
         dest="delay",
         action="store",
-        type=float,
+        type=positive_float,
         default=30.0,
         help=(
-            "Delay (in seconds) between searches.  If it's too small Google may block your IP, too big and your search"
+            "Delay (in seconds) between searches.  If it's too small Google may block your IP, too big and your search "
             "may take a while.  Default: 30.0"
         ),
     )
     parser.add_argument(
         "-f",
+        nargs="?",
+        metavar="SAVE_FILE",
         dest="save_links",
-        action="store_true",
+        action="store",
         default=False,
-        help="Save the html links to html_links_<TIMESTAMP>.txt file.",
+        help="R|Save the html links to a file.\n"
+        "no -f = Do not save links\n"
+        "-f = Save links to html_links_<TIMESTAMP>.txt\n"
+        "-f SAVE_FILE = Save links to SAVE_FILE",
     )
     parser.add_argument(
         "-i",
         dest="url_timeout",
         action="store",
-        type=int,
+        type=positive_int,
         default=15,
         help="Number of seconds to wait before timeout for unreachable/stale pages.  Default: 15",
     )
     parser.add_argument(
-        "-l", dest="search_max", action="store", type=int, default=100, help="Maximum results to search.  Default: 100"
+        "-l",
+        dest="search_max",
+        action="store",
+        type=positive_int,
+        default=100,
+        help="Maximum results to search.  Default: 100",
     )
     parser.add_argument(
         "-n",
         dest="download_file_limit",
-        default=100,
         action="store",
-        type=int,
+        type=positive_int,
+        default=100,
         help="Maximum number of files to download per filetype.  Default: 100",
     )
     parser.add_argument(
@@ -285,7 +332,7 @@ if __name__ == "__main__":
         "-r",
         dest="number_of_threads",
         action="store",
-        type=int,
+        type=positive_int,
         default=8,
         help="Number of downloader threads.  Default: 8",
     )
@@ -293,8 +340,8 @@ if __name__ == "__main__":
         "-t",
         dest="file_types",
         action="store",
-        required=True,
         type=csv_list,
+        required=True,
         help=(
             "file_types to download (pdf,doc,xls,ppt,odp,ods,docx,xlsx,pptx).  To search all 17,576 three-letter "
             'file extensions, type "ALL"'
@@ -319,35 +366,16 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    if not args.domain:
-        print("[!] Specify a domain with -d")
-        sys.exit(0)
-
-    if not args.file_types:
-        print("[!] Specify file types with -t")
-        sys.exit(0)
-
-    if (args.download_file_limit > 0) and (args.download_files is False):
-        print("[+] Adding -w for you")
-        args.download_files = True
-
-    if args.save_directory:
+    if args.save_directory and args.download_files:
         print(f"[*] Downloaded files will be saved here: {args.save_directory}")
         if not os.path.exists(args.save_directory):
             print(f"[+] Creating folder: {args.save_directory}")
             os.mkdir(args.save_directory)
 
-    if args.delay < 0:
-        print("[!] Delay must be greater than 0")
-        sys.exit(0)
-
-    if args.url_timeout < 0:
-        print("[!] URL timeout (-i) must be greater than 0")
-        sys.exit(0)
-
-    if args.number_of_threads < 0:
-        print("[!] Number of threads (-n) must be greater than 0")
-        sys.exit(0)
+    if args.save_links is False:
+        args.save_links = None
+    elif args.save_links is None:
+        args.save_links = f"html_links_{get_timestamp()}.txt"
 
     # print(vars(args))
     mg = Metagoofil(**vars(args))
