@@ -1,5 +1,5 @@
 version=4
-opts="mode=git, pretty=1:1.2.0+git%cd, pgpmode=none" \
+opts="mode=git, pretty=1.2.0+git%cd, pgpmode=none" \
   https://github.com/opsdisk/metagoofil HEAD
 # Upstream does not tag releases, keep this around for when they do.
 #opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/metagoofil-$1\.tar\.gz/ \
