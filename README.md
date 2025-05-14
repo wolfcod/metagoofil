@@ -27,7 +27,7 @@ on Twitter for the latest updates.
 Clone the git repository and install the requirements
 
 ```bash
-git clone https://github.com/opsdisk/metagoofil
+git clone https://github.com/wolfcod/metagoofil
 cd metagoofil
 virtualenv -p python3 .venv  # If using a virtual environment.
 source .venv/bin/activate  # If using a virtual environment.
@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ## Docker Installation & Usage
 
 ```bash
-git clone https://github.com/opsdisk/metagoofil
+git clone https://github.com/wolfcod/metagoofil
 cd metagoofil
 docker build -t metagoofil .
 # This will save the files in your current directory.
