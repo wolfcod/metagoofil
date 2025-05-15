@@ -1,5 +1,12 @@
 # Metagoofil
 
+## Note
+This repo is a fork of [Kali](https://gitlab.com/kalilinux/packages/metagoofil). The original repo doesn't work due an outdated
+package (google), which actually is not anymore compatible with Google Search.
+
+Actually the google package has been replaced with googlesearch-python.
+For updates, please refer to the original repo.
+
 ## Introduction
 
 metagoofil searches Google for specific types of files being publicly hosted on a web site and optionally downloads them
